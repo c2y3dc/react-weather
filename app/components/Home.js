@@ -1,21 +1,34 @@
 var React = require('react');
+var PropTypes = React.PropTypes;
+var GetCityContainer = require('../containers/GetCityContainer');
 
-var Home = React.createClass({
-	render() {
-		return (
-			<div className="container">
-				<div className="row text-center">
-							<form className="col-lg-8 col-offset-lg-4">
-								<h2>Enter City and State!</h2>		
-								  <div className="form-group">
-								    <input className="form-control" id="city-state" placeholder="San Francisco, California" />
-								  </div>
-									<button type="button" className="btn btn-lg btn-success">Get Weather</button>
-							</form>
-				</div>
-			</div>
-		);
-	}
-});
+var styles = {
+  container: {
+    backgroundSize: 'cover',
+    backgroundImage: "url('app/images/pattern.svg')",
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '100%',
+    width: '100%'
+  },
+  header: {
+    fontSize: 45,
+    color: '#fff',
+    fontWeight: 100,
+  },
+}
+
+function Home(props){
+	return (
+		<div style={styles.container}>
+			<h1 style={styles.header}>Enter a City and State</h1>
+			<GetCityContainer />	
+		</div>
+	)
+};
+
+
 
 module.exports = Home;
