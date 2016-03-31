@@ -10,6 +10,7 @@
   "author": "Ervin Chow",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.9.1",
     "react": "^0.14.8",
     "react-addons-css-transition-group": "^0.14.8",
     "react-dom": "^0.14.8",

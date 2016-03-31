@@ -18,13 +18,13 @@ var styles = {
 
 var Main = function (props) {
   return (
-  <div style={styles.container}>
-			  <div style={styles.header}>
-				  <p style={{margin: 0}}>Clever Title</p>
-				  <GetCityContainer direction="row" />
-			  </div>
-			  {props.children}
+	  <div style={styles.container}>
+		  <div style={styles.header}>
+			  <p style={{margin: 0}}>Clever Title</p>
+			  <GetCityContainer direction="row" />
 		  </div>
+		  {props.children}
+		</div>
   );
 };
 
