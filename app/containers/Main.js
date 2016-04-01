@@ -20,7 +20,7 @@ var Main = function (props) {
   return (
 	  <div style={styles.container}>
 		  <div style={styles.header}>
-			  <p style={{margin: 0}}>Clever Title</p>
+			  <p style={{margin: 0}}>React Weather Station</p>
 			  <GetCityContainer direction="row" />
 		  </div>
 		  {props.children}

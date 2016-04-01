@@ -16,9 +16,9 @@ var styles = {
 	},
 	header: {		
 		textAlign: 'center',
-		position: 'absolute',
+		// position: 'absolute',
 		width: '100%',
-    color: '#fff',
+    color: '#333',
     fontWeight: 100,
     marginTop: "50px"
   },
@@ -28,8 +28,9 @@ function Forecast(props) {
 	console.log(props.forecastData.list)
   return props.isLoading === true
 		? <Loading text={'Fetching'} speed={50} />
-		: <div style={styles.container}>
+		: <div>
 				<h1 style={styles.header}>{props.city}</h1>
+				<h3 style={styles.header}>Select a day</h3>
 				<DaysContainer list={props.forecastData.list}/>
 			</div>
 }
