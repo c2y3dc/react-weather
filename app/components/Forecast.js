@@ -1,9 +1,15 @@
 var React = require('react');
+var Loading = require('./Loading');
+var PropTypes = React.PropTypes;
 
-function Forecast(pros){
-	return(
-		<div> FORECAST CONTAINER </div>
-	)
+function Forecast(props) {
+  return props.isLoading === true
+		? <Loading text={'Fetching Forecast'} speed={100} />
+		: <div> FORECAST CONTAINER </div>
 }
+
+Forecast.propTypes = {
+  isLoading: PropTypes.bool.isRequired,
+};
 
 module.exports = Forecast;

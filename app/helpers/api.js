@@ -51,7 +51,7 @@ function getForecast(city) {
 
   axios.get(url)
 	.then(function (res) {
-  console.log(res.data);
+    console.log(res.data)
 	})
 	.catch(function (err) {
   console.warn(err);
