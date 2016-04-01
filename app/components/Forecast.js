@@ -4,7 +4,7 @@ var PropTypes = React.PropTypes;
 
 function Forecast(props) {
   return props.isLoading === true
-		? <Loading text={'Fetching Forecast'} speed={100} />
+		? <Loading text={'Fetching Forecast'} speed={50} />
 		: <div> FORECAST CONTAINER </div>
 }
 
