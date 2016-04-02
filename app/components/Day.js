@@ -1,5 +1,5 @@
 var React = require('react');
-var UTS = require('unix-timestamp');
+var utils = require('../helpers/utils');
 
 var styles = {
 	daycon: {
@@ -30,7 +30,7 @@ function Day(props){
 	return(
 		<div style={styles.daycon}>
 			<img style={styles.icon} src={getSrc(props.condition)}/>
-			<h2 style={styles.header}>{UTS.toDate(props.date).toString().substr(0,3)}</h2>
+			<h2 style={styles.header}>{utils.getDate(props.date)}</h2>
 		</div>
 	)
 }
