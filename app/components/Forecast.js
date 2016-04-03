@@ -1,38 +1,78 @@
 var React = require('react');
 var Loading = require('./Loading');
 var PropTypes = React.PropTypes;
-var DaysContainer = require('../containers/DaysContainer');
+// var DaysContainer = require('../containers/DaysContainer');
+var utils = require('../helpers/utils');
 
 var styles = {
-	container: {
-		backgroundSize: 'cover',
-    backgroundImage: "url('app/images/pattern.svg')",
+  container: {
     display: 'flex',
-    flexDirection: 'column',
-    // justifyContent: 'center',
+    justifyContent: 'space-between',
     alignItems: 'center',
-    height: '100%',
-    width: '100%'
-	},
-	header: {		
-		textAlign: 'center',
-		// position: 'absolute',
-		width: '100%',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    maxWidth: 1200,
+    margin: '50px auto'
+  },
+  dayContainer: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'column',
+    margin: 35
+  },
+  header: {
+    fontSize: 65,
     color: '#333',
     fontWeight: 100,
-    marginTop: "50px"
+    textAlign: 'center'
   },
+  subheader: {
+    fontSize: 30,
+    color: '#333',
+    fontWeight: 100
+  },
+  weather: {
+    height: 130
+  }
+}
+
+
+function DayItem(props){
+	var date = utils.getDate(props.day.dt);
+	var icon = props.day.weather[0].icon;
+	return(
+		<div style={styles.dayContainer}>
+			<img style={styles.weather} src={'./app/images/weather-icons/'+ icon + '.svg'} alt='Weather' />
+			<h2 style={styles.subheader}>{date}</h2>
+		</div>
+	)
+}
+
+
+function ForecastUI(props){
+	return (
+		<div>
+			<h1 style={styles.header}>{props.list.city.name}</h1>
+			<div style={styles.container}>
+				{props.list.list.map(function(listItem){
+					return <DayItem key={listItem.dt} day={listItem} />
+				})}
+			</div>
+		</div>
+	)
 }
 
 function Forecast(props) {
-	console.log(props.forecastData.list)
-  return props.isLoading === true
-		? <Loading text={'Fetching'} speed={50} />
-		: <div>
-				<h1 style={styles.header}>{props.city}</h1>
-				<h3 style={styles.header}>Select a day</h3>
-				<DaysContainer list={props.forecastData.list}/>
-			</div>
+  return (
+  	<div>
+  		{
+  			props.isLoading === true
+					? <Loading text={'Fetching'} speed={50} />
+					: <ForecastUI list={props.forecastData}/>
+			}		
+		</div>
+	)
 }
 
 Forecast.propTypes = {
