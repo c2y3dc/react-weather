@@ -1,8 +1,8 @@
 var React = require('react');
 var Loading = require('./Loading');
 var PropTypes = React.PropTypes;
-// var DaysContainer = require('../containers/DaysContainer');
 var utils = require('../helpers/utils');
+var DayItem = require('./DayItem');
 
 var styles = {
   container: {
@@ -13,13 +13,6 @@ var styles = {
     flexWrap: 'wrap',
     maxWidth: 1200,
     margin: '50px auto'
-  },
-  dayContainer: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    flexDirection: 'column',
-    margin: 35
   },
   header: {
     fontSize: 65,
@@ -32,23 +25,7 @@ var styles = {
     color: '#333',
     fontWeight: 100
   },
-  weather: {
-    height: 130
-  }
 }
-
-
-function DayItem(props){
-	var date = utils.getDate(props.day.dt);
-	var icon = props.day.weather[0].icon;
-	return(
-		<div onClick={props.handleClick} style={styles.dayContainer}>
-			<img style={styles.weather} src={'./app/images/weather-icons/'+ icon + '.svg'} alt='Weather' />
-			<h2 style={styles.subheader}>{date}</h2>
-		</div>
-	)
-}
-
 
 function ForecastUI(props){
 	return (
@@ -70,44 +47,6 @@ function ForecastUI(props){
 	)
 }
 
-// var Forecast = React.createClass({
-// 	contextTypes:{
-// 		router: React.PropTypes.object.isRequired
-// 	},
-// 	propTypes:{
-// 		isLoading: PropTypes.bool.isRequired,
-//   	city: PropTypes.string.isRequired,
-//   	forecastData: PropTypes.object.isRequired
-// 	},
-// 	// getInitialState: function(){
-// 	// 	return {
-// 	// 		detailsData: {},
-// 	// 		city: ''
-// 	// 	};
-// 	// },
-// 	handleClick: function(e){
-// 		e.preventDefault();
-// 		console.log("I done got clicked", this.props)
-// 		// this.setState({
-// 		// 	detailsData: this.props.forecastData
-// 		// })
-// 		this.context.router.push({
-// 			pathname:'/detail/' + this.props.city
-// 		})
-// 	},
-// 	render: function(){
-// 	  return (
-// 	  	<div>
-// 	  		{
-// 	  			this.props.isLoading === true
-// 						? <Loading text={'Fetching'} speed={50} />
-// 						: <ForecastUI list={this.props.forecastData} handleClick={this.handleClick}/>
-// 				}		
-// 			</div>
-// 		)
-// 	}
-// })
-
 function Forecast(props){
 	return (
 		<div>
@@ -120,7 +59,6 @@ function Forecast(props){
 							handleClick={props.handleClick} />
 			}
 		</div>
-
 	)
 }
 

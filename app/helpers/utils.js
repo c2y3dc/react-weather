@@ -24,11 +24,11 @@ var monthsMap = {
 };
 
 function convertToF(kelvin){
-  return (kelvin - 273.15) * 1.8000 + 32
+  return ((kelvin - 273.15) * 1.8000 + 32).toPrecision(3)
 }
 
 function convertToC(kelvin){
-  return kelvin - 273.15
+  return (kelvin - 273.15).toPrecision(3)
 }
 
 function getDate(unixTimestamp){

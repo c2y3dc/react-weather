@@ -5,10 +5,9 @@ var Details = require('../components/Details');
 var DetailsContainer = React.createClass({
 
 	render: function(){
-		console.log(this.props.location.state.weather)
 		return (
 			<div>
-				<Details />
+				<Details day={this.props.location.state.weather} city={this.props.location.state.city}/>
 			</div>
 		)
 	}
