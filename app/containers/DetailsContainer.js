@@ -5,6 +5,7 @@ var Details = require('../components/Details');
 var DetailsContainer = React.createClass({
 
 	render: function(){
+		console.log(this.props.location.state.weather)
 		return (
 			<div>
 				<Details />

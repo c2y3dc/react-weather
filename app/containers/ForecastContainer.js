@@ -4,8 +4,16 @@ var getForecast = require('../helpers/api').getForecast;
 var PropTypes = React.PropTypes;
 
 var ForecastContainer = React.createClass({
-	contextType:{
-		router: React.PropTypes.object.isRequired
+	contextTypes:{
+		router: React.PropTypes.object.isRequired,
+	},
+	handleClick: function(weather){
+		this.context.router.push({
+			pathname:'/detail/' + this.props.routeParams.city,
+			state: {
+				weather: weather
+			}
+		})
 	},
 	getInitialState: function() {
 		return {
@@ -33,9 +41,10 @@ var ForecastContainer = React.createClass({
 	render: function(){
 		return(
 			<Forecast
-				city={this.props.location.state.city}
+				city={this.props.routeParams.city}
 				isLoading={this.state.isLoading}
 				forecastData={this.state.forecastData}
+				handleClick={this.handleClick}
 			/>
 		)
 	}
