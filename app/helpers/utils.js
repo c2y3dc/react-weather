@@ -1,4 +1,4 @@
-var daysMap = {
+const daysMap = {
   "0":"Sunday",
   "1":"Monday",
   "2":"Tuesday",
@@ -8,7 +8,7 @@ var daysMap = {
   "6":"Saturday"
 };
 
-var monthsMap = {
+const monthsMap = {
   "0":"Jan",
   "1":"Feb",
   "2":"Mar",
@@ -23,23 +23,18 @@ var monthsMap = {
   "11":"Dec"
 };
 
-function convertToF(kelvin){
+export function convertToF(kelvin){
   return ((kelvin - 273.15) * 1.8000 + 32).toPrecision(3)
 }
 
-function convertToC(kelvin){
+export function convertToC(kelvin){
   return (kelvin - 273.15).toPrecision(3)
 }
 
-function getDate(unixTimestamp){
-  var date = new Date(unixTimestamp * 1000);
-  var day = daysMap[date.getDay()];
-  var month = monthsMap[date.getMonth()] + " " + date.getDate();
+export function getDate(unixTimestamp){
+  const date = new Date(unixTimestamp * 1000);
+  const day = daysMap[date.getDay()];
+  const month = monthsMap[date.getMonth()] + " " + date.getDate();
   return day + ", " + month;
 }
 
-module.exports = {
-  convertToC: convertToC,
-  convertToF: convertToF,
-  getDate: getDate
-}

@@ -1,58 +1,52 @@
-var React = require('react');
-var PropTypes = React.PropTypes;
-var GetCity = require('../components/GetCity');
-var getCurrentWeather = require('../helpers/api').getCurrentWeather;
-var getForecast = require('../helpers/api').getForecast;
+import React, {PropTypes, Component} from 'react'
+import GetCity from '../components/GetCity'
+// import {getCurrentWeather, getForecast} from '../helpers/api'
 
-var GetCityContainer = React.createClass({
-  contextTypes:{
-    router: React.PropTypes.object.isRequired,
-  },
-
-  getDefaultProps: function(){
-    return {
-      direction: 'column',
-    };
-  },
-
-  propTypes: {
-    direction: PropTypes.string,
-  },
-
-  getInitialState: function(){
-    return {
+class GetCityContainer extends Component{
+  constructor(){
+    super()
+    this.state = {
       isLoading: true,
       city: '',
     };
-  },
+  }
 
-  handleUpdateCity: function(e){
+  handleUpdateCity(e){
     this.setState({
       city: e.target.value,
     });
-  },
+  }
 
-  handleSubmitCity: function(e){
+  handleSubmitCity(e){
     e.preventDefault();
     var city = this.state.city;
     this.context.router.push({
       pathname: '/forecast/' + city,
       state:{
-        city: city
+        city
       }
     })
-  },
+  }
 
-  render: function(){
-  	return(	
-	  	<GetCity
-	  		onSubmitCity={this.handleSubmitCity}
-	  		onUpdateCity={this.handleUpdateCity}
-	  		city={this.state.city}
-	  		direction={this.props.direction}
-	  	/>
-	  )
-  },
-});
+  render(){
+    return( 
+      <GetCity
+        onSubmitCity={(e) => this.handleSubmitCity(e)}
+        onUpdateCity={(e) => this.handleUpdateCity(e)}
+        city={this.state.city}
+        direction={this.props.direction}
+      />
+    )
+  }
+}
 
-module.exports = GetCityContainer;
+GetCityContainer.contextTypes = {
+  router: React.PropTypes.object.isRequired,
+}
+GetCityContainer.propTypes = {
+  direction: PropTypes.string,
+}
+GetCityContainer.defaultProps = {
+  direction: 'column',
+}
+export default GetCityContainer

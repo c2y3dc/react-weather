@@ -1,9 +1,8 @@
-var React = require('react');
-var utils = require('../helpers/utils');
-var DayItem = require('./DayItem');
+import React from 'react'
+import {getDate, convertToC, convertToF} from '../helpers/utils'
+import DayItem from './DayItem'
 
-
-var styles = {
+const styles = {
   descriptionContainer: {
     fontSize: 34,
     fontWeight: 100,
@@ -14,12 +13,12 @@ var styles = {
 }
 
 function Details(props){
-	var icon = props.day.weather[0].icon;
-	var desc = props.day.weather[0].description;
-	var city = props.city;
-	var date = utils.getDate(props.day.dt);
-	var minT = utils.convertToC(props.day.temp.min);
-	var maxT = utils.convertToC(props.day.temp.max);
+	const icon = props.day.weather[0].icon;
+	const desc = props.day.weather[0].description;
+	const city = props.city;
+	const date = getDate(props.day.dt);
+	const minT = convertToC(props.day.temp.min);
+	const maxT = convertToC(props.day.temp.max);
 
 	return (
 		<div styles={styles.container}>
@@ -35,4 +34,4 @@ function Details(props){
 	)
 }
 
-module.exports = Details;
+export default Details

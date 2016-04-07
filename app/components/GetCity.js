@@ -1,5 +1,4 @@
-var React = require('react');
-var PropTypes = React.PropTypes;
+import React, {PropTypes} from 'react'
 	
 function InputField(props){
 	return(	
@@ -58,4 +57,4 @@ GetCity.propTypes = {
 	direction: PropTypes.string
 }
 
-module.exports = GetCity;
+export default GetCity

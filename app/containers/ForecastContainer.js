@@ -1,55 +1,53 @@
-var React = require('react');
-var Forecast = require('../components/Forecast');
-var getForecast = require('../helpers/api').getForecast;
-var PropTypes = React.PropTypes;
+import React, { PropTypes, Component } from 'react'
+import Forecast from '../components/Forecast'
+import {getForecast} from '../helpers/api'
 
-var ForecastContainer = React.createClass({
-	contextTypes:{
-		router: React.PropTypes.object.isRequired,
-	},
-	handleClick: function(weather){
-		var city = this.props.routeParams.city
-		this.context.router.push({
-			pathname:'/detail/' + city,
-			state: {
-				weather: weather,
-				city: city
-			}
-		})
-	},
-	getInitialState: function() {
-		return {
+class ForecastContainer extends Component{
+	constructor() {
+		super()
+		this.state = {
 			isLoading: true,
 			forecastData: {}
 		};
-	},
-	componentDidMount: function() {
-		var city = this.props.location.state.city;
+	}
+	componentDidMount() {
+		const city = this.props.location.state.city;
 		this.makeRequest(city);
-	},
-	componentWillReceiveProps: function(nextProps) {
+	}
+	componentWillReceiveProps(nextProps) {
 		this.makeRequest(nextProps.routeParams.city)
-	},
-	makeRequest: function(city){
-		getForecast(city)
-			.then(function(forecastData){
-				// console.log(forecastData);
-				this.setState({
-					isLoading: false,
-					forecastData: forecastData
-				})
-		}.bind(this))		
-	},
-	render: function(){
+	}
+	async makeRequest(city){
+		const forecastData = await getForecast(city)
+		this.setState({
+			isLoading: false,
+			forecastData
+		})		
+	}
+	handleClick(weather){
+		const city = this.props.routeParams.city
+		this.context.router.push({
+			pathname:'/detail/' + city,
+			state: {
+				weather,
+				city
+			}
+		})
+	}
+	render(){
 		return(
 			<Forecast
 				city={this.props.routeParams.city}
 				isLoading={this.state.isLoading}
 				forecastData={this.state.forecastData}
-				handleClick={this.handleClick}
+				handleClick={(weather) => this.handleClick(weather)}
 			/>
 		)
 	}
-})
+}
 
-module.exports = ForecastContainer;
+ForecastContainer.contextTypes = {
+	router: React.PropTypes.object.isRequired,
+}
+
+export default ForecastContainer

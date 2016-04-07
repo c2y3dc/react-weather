@@ -31,7 +31,7 @@ function getQueryStringData(city) {
   };
 }
 
-function getCurrentWeather(city) {
+export function getCurrentWeather(city) {
   //get current weather
   var queryStringData = getQueryStringData(city);
   var url = prepUrl('weather', queryStringData);
@@ -45,7 +45,7 @@ function getCurrentWeather(city) {
   });
 }
 
-function getForecast(city) {
+export function getForecast(city) {
   //get forecast
   var queryStringData = getQueryStringData(city);
   var url = prepUrl('forecast/daily', queryStringData);
@@ -58,8 +58,3 @@ function getForecast(city) {
        console.warn(err);
     });
 }
-
-module.exports = {
-  getForecast: getForecast,
-  getCurrentWeather: getCurrentWeather,
-};

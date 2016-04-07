@@ -1,17 +1,12 @@
-var React = require('react');
-var getForecast = require('../helpers/utils').getForecast;
-var Details = require('../components/Details');
+import React, {Component} from 'react'
+import Details from '../components/Details'
 
-var DetailsContainer = React.createClass({
+function DetailsContainer(props) {
+	return (
+		<div>
+			<Details day={props.location.state.weather} city={props.location.state.city}/>
+		</div>
+	)
+}
 
-	render: function(){
-		return (
-			<div>
-				<Details day={this.props.location.state.weather} city={this.props.location.state.city}/>
-			</div>
-		)
-	}
-})
-
-
-module.exports = DetailsContainer;
+export default DetailsContainer
